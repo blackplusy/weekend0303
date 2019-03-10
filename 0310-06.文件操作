@@ -1,0 +1,34 @@
+a.文件操作的应用场景
+b.文件操作实例
+
+a.文件操作应用场景
+	1.网站记录日志时候
+	2.报表数据
+	3.爬虫数据写入文件
+	4.招聘网站简历的导入导出
+
+b.文件操作实例
+1.读文件
+注意:open函数参数的第一个是文件位置，第二个参数是对文件的操作，r代表读文件
+
+f=open('/home/heygor/0310/test','r')
+for i in f:
+        print(i)
+f.close()
+2.写文件
+注意：write只能写入字符串，如果没有该文件，自动创建，w代表写
+str1='heygor is handsome!!!!'
+f=open('/home/heygor/0310/test3','w')
+f.write(str1)
+f.close()
+print('finished!')
+3.追加文件
+注意：追加内容第二个参数为a，注意换行
+注意：换行是\n
+
+f=open('/home/heygor/0310/test3','a')
+f.write('\n come on baby!')
+f.close()
+print('yes')
+
+
