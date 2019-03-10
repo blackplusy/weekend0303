@@ -1,0 +1,69 @@
+a.字典的应用场景
+b.创建字典
+c.访问字典
+d.修改字典
+e.删除字典
+f.补充
+
+a.字典的应用场景
+	1.前后端数据传输
+	2.接口开发
+	3.浏览器提交数据给服务器
+
+b.创建字典
+	字典是python中的映射数据类型
+	由键值对组成  name:'gaga'
+	一般字符串或者数字作为键
+	dic={'name':'8jie','age':18}
+	dic={'name':'tangsir'}
+c.访问字典
+	dic={'name':'8jie','age':18}
+	print(dic)
+	print(dic['name'])
+	print(dic['age'])
+
+d.修改字典
+	dic={'name':'8jie','age':18}
+	print(dic)
+	dic['name']='redhair'
+	print(dic)
+	dic['jingli']='kill'
+	print(dic)
+
+e.删除字典
+	1.del
+	删除指定元素(键值对)
+	删除整个字典(不能访问)
+	dic={'name':'8jie','age':18}
+	print(dic)
+	del dic['name']
+	print(dic)
+	del dic
+	print(dic)
+	2.clear
+	清空字典(清空后可以进行访问)
+	dic={'name':'8jie','age':18}
+	print(dic)
+	dic.clear()
+	print(dic)
+f.补充
+	1.keys(键)
+	dic={'name':'heygor','QQ':110}
+	print(dic.keys())
+	for i in dic.keys():
+        	print(i)
+	2.values(值)
+	dic={'name':'heygor','QQ':110}
+	print(dic.values())
+	for i in dic.values():
+        	print(i)
+	3.items(键值对)
+	dic={'name':'heygor','QQ':110}
+	print(dic.items())
+	for i,j in dic.items():
+        	print(i,j)
+
+	
+
+
+
