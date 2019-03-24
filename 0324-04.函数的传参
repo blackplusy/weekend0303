@@ -1,0 +1,64 @@
+
+课程内容
+a.函数的形参和实参
+b.参数传递-实参位置
+c.参数传递-关键字参数
+d.参数传递-参数默认值
+e.参数传递-不定长参数
+
+a.函数的形参和实参
+def print_name(name):
+	print('your name is %s' % name)
+
+print_name('o8ma')
+例子中形参为定义函数时候括号中的name,实参是调用函数时候传入的'o8ma'
+b.参数传递-实参位置
+def animal(pet2,pet1):
+        print(pet1+'wang!'+pet2+'miao!!!')
+
+#调用函数传入2个参数
+animal('dog','cat')
+animal('cat ','dog')
+
+c.参数传递-关键字参数
+关键字传递函数名称-值对，直接在形参中把名和值对应起来就不会混淆
+def animal(pet1,pet2):
+        print(pet1+'wang!'+pet2+'miao!!!')
+
+animal(pet2='cat',pet1='2ha')
+d.参数传递-参数默认值
+函数定义是后设置函数形参，每个形参有默认值，当函数在调用时候，如果没有实参，就是形参默认值
+def animal(pet2,pet1='2ha'):
+        print(pet1+' wang！'+pet2 + ' miao')
+
+animal('heygor')
+animal('jiafei','taidi')
+
+e.参数传递-不定长参数
+有时候函数里比当初声明更多的参数叫做不定长参数
+*args位置参数传入数据装配成元组
+
+def test(x,y,*args):
+	print(x,y,args)
+
+test(1,2,'heygor','ladeng')
+**args位置参数传入数据装配为字典类型
+def test1(x,y,**args):
+        print(x,y,args)
+test1(1,2,a=10,b=20,c='redhair')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
