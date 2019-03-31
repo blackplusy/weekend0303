@@ -212,6 +212,70 @@ g.测试
 	show tables;    可以看到sakila中所有的表
 	select * from city; 可以看到数据信息
 
+6.数据的查询
+	a.常见分类
+		简单查询(单表查询)
+		多表查询(连接查询)
+		子查询
+		分组查询
+	b.简单查询
+	可以查询指定的行，指定的列，指定行的列
+	select * from customer where first_name='Mary';
+	select last_name from customer;
+	select last_name from customer where first_name='Mary';
+	语法:
+		select 列 from 表 where 条件;
+	c.where 条件
+	c1.比较
+		>  大于
+		<  小于
+		=  等于
+		>= 大于等于
+		<= 小于等于
+		!= 不等于
+		<> 不等于
+	例子：查询customer表中cutomer_id小于10的人的名字
+	select last_name from customer where customer_id<10;
+	注意：select后from前和列相关，where和行相关
+	例子：查询customer表中cutomer_id不等于1的所有信息
+	select * from customer where customer_id!=1;
+	c2.关系
+		and	同时满足
+		or 	满足一个即可
+		not     不满足条件
+	例子：查询customer表中customer_id大于100并且小于200的所有名字
+	select first_name from customer where customer_id>100 and customer_id<200;
+	例子：查询customer表中名字是SUE或者BETH的所有信息
+	select * from customer where first_name='SUE' or first_name='BETH';
+	c3.区间
+	区间范围是包括2个端点
+	例子：查询customer表中customer_id范围是10和20之间的所有信息
+	select * from customer where customer_id between 10 and 20;
+	注意：小在前，大在后，一般和数字类型一起使用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
