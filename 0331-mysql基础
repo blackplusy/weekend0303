@@ -134,13 +134,12 @@
 		kinfo char(20)
 	);
 
-	create table order(
-		kid int references customer(kid),
-		oinfo char(20)
+	CREATE TABLE order (
+   	 kid INT,
+    	 oinfo char(20),
+   	 FOREIGN KEY (kid)
+        	REFERENCES customer(kid)
 	);
-
-
-
 
 	
 
