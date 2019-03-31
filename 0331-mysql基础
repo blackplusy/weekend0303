@@ -192,6 +192,25 @@ rollback;       把数据库状态恢复到最后一次提交状态。
 注意：所有DML语句会触发事务的开始。也就是一定要结束。
 
 
+5.sakila数据库导入
+a.下载地址
+帮助文档：https://dev.mysql.com/doc/sakila/en/sakila-installation.html
+下载地址：https://dev.mysql.com/doc/index-other.html
+b.进入到sakila下载所在目录解压
+	tar -xzvf sakila-db.tar.gz  解压压缩包到当前目录下
+c.进入到解压后的目录
+	cd 下载/sakila-db/
+d.登录mysql数据库
+	mysql -u root -p
+e.导入sakila-schema.sql
+	source sakila-schema.sql;
+f.导入sakila-data.sql
+	source sakila-data.sql;
+g.测试
+	show databases; 可以看到sakila数据库
+	use sakila;
+	show tables;    可以看到sakila中所有的表
+	select * from city; 可以看到数据信息
 
 
 
