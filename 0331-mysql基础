@@ -55,6 +55,135 @@
 		查看user表中所有数据
 		
 
+7.远程连接其他主机
+	1.设置配置文件(服务端配置文件)
+	sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf 
+	bind-address = 0.0.0.0
+	重启mysqld服务
+	sudo /etc/init.d/mysql restart
+	2.授权
+	登录后使用
+	grant all  privileges  on *.* to root@'%' idenfied by 'test';
+8.SQL(结构化查询语言)
+	DDL：数据库定义语言   create alter drop truncate
+	DML: 数据库操作语言   insert update delete
+	DCL: 数据库控制语言   grant  revoke
+	DQL：数据库查询语言   select
+9.表结构
+	a.创建表结构
+	表：类似于excel，有行有列，表头，数据
+	a1.数据类型
+		字符类型 'abc' '123' char varchar
+		数字类型  123 3.1415 int 
+		日期类型  2018-01-01 date
+	补充：
+		char     定长  char(10)    速度快，占存储
+		varchar  变长  varchar(10) 速度慢，省空间
+	a2.表结构创建
+	语法：create table 表(
+			列  数据类型,
+			列  数据类型....
+		);
+	例子：创建商品表(goods),里面3个列，名称(name) 字符类型(10),价格(price) s数字类型，出厂日期(ddate) 日期类型;
+	create table goods(
+		name char(10),
+		price int,
+		ddate date
+	);
+	注意：一定要先进入到数据库中
+	补充：查看表结构 desc 表名;
+	例子：查看goods表的表结构
+		desc goods;
+	b.修改表结构
+	修改数据类型
+	例子：修改goods表中name数据类型为varchar
+	alter table goods modify name varchar(30);
+	c.删除表结构
+	语法：drop table  表;
+	例子：删除goods表
+		drop table goods;
+	d.约束
+	d1.主键约束   列中的数据不重复，每张表中只能有一个，不能为空
+	d2.唯一约束   列中的数据不重复，作为主键约束的补充，可以为空
+	d3.非空约束   列中的数据不能为空
+	d4.检查约束   列中的数据是否满足条件
+	d5.外键(参考约束) 列中的数据依赖于另外一张表中的列
+
+	语法:
+	create table 表(
+		列 数据类型 primary key,
+		列 数据类型 unique,
+		列 数据类型 not null,
+		列 数据类型 check(检查条件),
+		列 数据类型 references 被参考表(被参考列)
+	);
+	例子：创建表emp,员工id(yid) 数字类型，主键约束，员工电话(tel) 数字类型 唯一约束，员工名字 字符类型 不能为空，工资(sal) 介于2000和3000之前
+	create table emp(
+		yid int primary key,
+		tel int unique,
+		name char(10) not null,
+		sal int check(sal>=2000 and sal<=3000)		
+	);
+	外键约束需要注意：
+	1.被参考表的被参考列一定存在
+	2.参考列和被参考列数据类型一致
+	3.被参考列一定是主键约束
+	
+	create table customer(
+		kid  int primary key,
+		kinfo char(20)
+	);
+
+	create table order(
+		kid int references customer(kid),
+		oinfo char(20)
+	);
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
