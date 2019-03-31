@@ -253,6 +253,105 @@ g.测试
 	select * from customer where customer_id between 10 and 20;
 	注意：小在前，大在后，一般和数字类型一起使用
 
+	c4.模糊查询
+	通常和字符类型一起使用
+	like
+	_	一个字符
+	%	任意个字符
+	例子：查询customer表中用户名字以M开头的所有信息
+	select * from customer where first_name like 'M%';
+	例子：查询customer表中用户名子以Y结尾的所有信息
+	select * from customer where first_name like '%Y';
+	例子：查询customer表中名字是5个字符的所有信息
+	select * from customer where first_name like '_____';
+
+	c5.in
+	在...里面，或的关系
+	例子：查询customer表中名字不是SUE或者BETH的所有信息
+	select * from customer where first_name not  in ('SUE','BETH');
+
+	c6.空值查询
+	空是没有任何数据类型，没有任何值,不能用于比较和运算
+	查询时候使用is null或者is not null
+	例子：查询goods表中出厂日期为空的所有数据
+	select * from goods where ddate is null;
+
+	c7.常用函数
+	upper	大写
+	lower	小写
+	round	小数点后保留几位
+	avg     平均值
+	select avg(price),round(avg(price),2) from goods;
+	select lower(first_name) from customer;
+	select lower(first_name),first_name from customer;
+
+补充：
+包：打包
+创建的包文件通常以.tar结尾
+tar -cvf test.tar example*	打包包文件test.tar内容为example开头的文件
+tar -tvf test.tar		查看包文件test.tar
+tar -xvf test.tar 		解包包文件test.tar到当前目录
+tar -xvf test.tar -C 0331/ 	解包包文件test.tar到当前目录下的0331目录中
+注意：解包到指定目录需要-C
+
+压缩文件
+du -sh  examples.desktop 	查看文件大小
+gzip examples.desktop 		压缩文件
+gzip -l examples.desktop.gz 	查看文件压缩属性
+gzip -d examples.desktop.gz 	解压压缩文件
+
+压缩包
+先打包后压缩
+压缩包文件通常以.tar.gz或者.tgz结尾
+tar -czvf test3.tgz 0219         创建压缩包
+tar -tzvf test3.tgz              查看压缩包属性
+tar -xzvf test3.tgz              解压压缩包到当前目录
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
 
 
 
