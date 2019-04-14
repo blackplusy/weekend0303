@@ -64,6 +64,13 @@ select 列 from 表1,表2 where 表1.列=表2.列;
         and c.city='Shenzhen';
 
 
+问题:
+	查询以C开头的国家有哪些城市?
+
+	查询名字为MARY的所在城市?
+
+	查询名字为MARY的所在国家?
+
 
 
 
