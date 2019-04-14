@@ -63,13 +63,105 @@ select 列 from 表1,表2 where 表1.列=表2.列;
         where co.country_id=c.country_id
         and c.city='Shenzhen';
 
-
-问题:
 	查询以C开头的国家有哪些城市?
+	1.分析列
+		国家名称
+		城市名称
+	2.分析表
+		city
+		country
+	3.关联
+		select * from city c,country co
+		where c.country_id=co.country_id;
+	4.过滤
+                select c.city from city c,country co
+                where c.country_id=co.country_id
+		and   co.country like 'C%';
 
 	查询名字为MARY的所在城市?
+	1.分析列
+		名字
+		城市名称
+	2.分析表
+		customer first_name
+		city     city
+		address
+	3.关联
+		select * from city c,customer cu,address a
+		where c.city_id=a.city_id
+		and   a.address_id=cu.address_id;
+	4.过滤
+                select c.city from city c,customer cu,address a
+                where c.city_id=a.city_id
+                and   a.address_id=cu.address_id
+		and   cu.first_name='MARY';
 
 	查询名字为MARY的所在国家?
+		select co.country from city c,country co,address a,customer cu
+		where c.country_id=co.country_id
+		and c.city_id=a.city_id
+		and a.address_id=cu.address_id
+		and cu.first_name='MARY';
+--1.jpg
+1.select * from test1 where department='计算机系' and place='北京';
+2.update test1 set department='信息学院' where department='计算机系';
+3.select t1.no,t1.name,t2.grade,t2.courses  from test1 t1,test2 t2 where t1.no=t2.no and t2.grade>=75;
+
+--2.jpg
+1.select s.name  from student s,achievement a
+where s.id=a.id and a.mark>85;
+2.select count(id) from achievement where mark>=90;
+3.insert into achievement values(7,80);
+4.update achievement set mark=87 where id=3;
+5.delete from student where name='Betty';
+  delete from achivement where id=6;
+
+--4.jpg
+1.select s#,grade from sc where c#='C2';
+2.select sname from s where sname like'D%';
+3.select s.s#,s.sname  from s,sc,c 
+  where s.s#=sc.s#
+  and   sc.c#=c.c#
+  and   c.cname='Maths';
+4.select s# from sc where c#='C2' or c#='C4';
+
+=========================================================
+子查询
+一条SQL语句的执行依赖于另外一条SQL语句的执行结果
+查询国家名字为China的城市名称
+1.分析列
+	country
+	city
+2.分析表
+	country
+	city
+3.分析关联列
+	country_id
+4.拆分
+	查询国家表中满足条件的country_id
+	select country_id from country where country='China';
+	查询城市表中country_id为上面查询出来结果的城市名称
+	select city from city where country_id=(select country_id from country where country='China');
+子查询分为单行子查询，多行子查询
+	单行子查询：查询子句返回的结果是一行，可以使用=或者in
+	多行子查询：查询子句返回的结果是多行，只能使用in
+查询城市名称以C开头的国家名称有哪些？
+	查询城市表中满足条件的country_id
+	select country_id from city where city like 'C%';
+	查询国家表中coutry_id为上面查询出来结果的国家名称
+	select country from country where country_id in (select country_id from city where city like 'C%');
+注意：子查询不仅仅可以应用在查询中也可以应用在数据新增修改删除中
+--2.jpg
+3.insert into acvievement values((select id from student where name='Robert'),80);
+4.update achievement set mark=87 where id=(select id from student where name='Rose');
+5.
+delete from achievement where id=(select id from student where name='Betty');
+delete from student where name='Betty';
+
+
+
+
+
 
 
 
