@@ -139,147 +139,6 @@ for i in data:
 cur.close()			    #关闭游标
 conn.close()   			    #关闭数据库连接，释放数据库资源
 
-1.mysql基础
-	基础命令
-	表操作
-		create table 表 (
-			列 数据类型 约束，
-			列 数据类型 约束,
-			。。。
-		);
-		alter table 表 modify 列 数据类型 约束;
-		drop table 表;
-	数据的新增
-		向全表新增数据
-		insert into 表 values(值1,值2....);
-		向表中指定列新增数据
-		insert into 表(列1，列2) values(值1，值2);
-	数据的修改
-		update 表 set 列=值 where 条件;
-	数据的删除
-		delete   from  表 where 条件;
-		truncate table 表;
-	数据的查询
-		1.简单查询
-			select 列 from 表 where 条件;
-			where条件
-			a.比较运算符
-				>
-				<
-				=
-				>=
-				<=
-				!=
-				<>
-			b.关系运算符
-				and
-				or
-				not
-			c.区间
-				between...and...
-			d.空值查询
-				is null
-				is not null
-			e.模糊查询
-				like
-				%
-				_
-			f.在...里面
-				in
-		2.多表查询
-			内联查询
-			select 列 from 表1，表2 where 表1.列=表2.列;
-			select 列 from 表1 inner join 表2 on 表1.列=表2.列;
-			左联查询
-			select 列 from 左表 left join 右表 on 左表.列=右表.列;
-			右联查询
-			select 列 from 左表 right join 右表 on 左表.列=右表.列;
-		3.子查询
-		4.分组查询
-			select 列 from 表 
-				where 条件
-					group by 分组条件
-						having 分组后过滤条件;
-			having  分组后过滤
-			where   分组前过滤
-========================================================================================
-0.集成工具
-	web服务器
-		apache nginx tomcat iis
-	数据库服务器
-		mysql  sqlite access
-	1.xampp
-	2.wamp
-	3.phpstudy
-1.登陆
-	设置环境变量(让系统可以找到需要执行的命令)
-	计算机--属性--高级--环境变量--系统变量--Path中添加
-	;D:\phpStudy\MySQL\bin
-	确定--确定--确定
-	win+r--cmd--
-	mysql -u root -p
-2.导入sakila数据库
-3.mysql的排序和分页
-	a.排序
-		顺序：从小到大
-			order by 列;
-			order by 列 asc;
-		倒序(逆序)：从大到小
-			order by 列 desc;
-		需求:查询city表中所有数据，按照city_id倒序排列
-			select * from city order by city_id desc;
-		需求:查询city表中所有数据，按照country_id顺序排列
-			select * from city order by country_id ;
-		补充：双排序
-			order by 列1,列2;
-		需求:查询city表中所有数据，按照country_id顺序排列，city_id逆序排列
-	b.分页
-		limit 行数
-		limit 开始行数，取多少数据
-		需求:查询city表中前10行数据
-		select * from city limit 10;
-		需求:查询city表中11-15行数据
-		select * from city limit 10,5;
-安装python36注意:开始安装时候，选择Add python to Path
-4.语法总结：
-	select 列 from 表
-		where 条件
-			group by 分组条件
-				having 分组后过滤条件
-					order by 排序条件
-						limit 限制条件;
-5.python操作mysql数据库
-a.导入pymysql模块
-	1.pip自动安装方式
-		win+r--cmd--pip  install pymysql
-	2.官网通过源码包安装
-		下载地址：https://pypi.org/project/PyMySQL/
-		21.下载对应压缩包
-		22.解压到当前文件夹
-		23.进入到文件夹中命令提示符中执行python setup.py install
-	3.测试
-		win+r--cmd--python
-		import pymysql
-b.python操作mysql实例
-#coding=utf-8
-import pymysql   #导入pymysql模块
-conn=pymysql.connect(host='localhost',user='root',passwd='root',db='sakila',port=3306,charset='utf8')   #设置连接参数
-'''
-host:    连接的主机名或者IP
-user:    登陆mysql主机的用户
-passwd:  登陆mysql主机的密码
-db:      登陆mysql主机的数据库的名字
-port:    登陆mysql主机的数据库端口
-charset: 字符集
-'''
-cur=conn.cursor()                   #获取一个游标
-cur.execute('select * from city')   #所需要执行的语句
-data=cur.fetchall()		    #获取语句的执行结果
-for i in data:
-	print(i)
-cur.close()			    #关闭游标
-conn.close()   			    #关闭数据库连接，释放数据库资源
-
 ==========================================================================
 mongodb
 1.下载和安装
@@ -349,5 +208,61 @@ mongodb
 			查看startup_log集合中的文档
 	补充：官方文档https://docs.mongodb.com/manual/crud/
 	下载地址：https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-4.0.9.zip
+6.CURD(增删改查)
+	文档的新增
+		db.xiyouji.insert({name:'tangsir',age:200})
+	文档的查询
+		db.xiyouji.find()
+		db.xiyouji.find({name:'tangsir'})
+	文档的更新(修改)
+		db.xiyouji.update({name:'tangsir'},{$set:{age:999}})
+	文档的删除
+		db.xiyouji.remove({name:'8jie'})
+7.文档的新增
+	新增普通文档
+		db.xiyouji.insert({name:'shasir',age:800,jingli:'dsxsfrygzzl'})
+	新增文档指定_id
+		db.xiyouji.insert({_id:0,name:'2dog',age:100})
+	新增内嵌文档
+		db.xiyouji.insert({name:'kingkong',jingli:{kill:100,hit:2}})
+	新增多个文档
+		db.xiyouji.insert([{name:'nazha'},{name:'tai2'},{name:'redhair'}])
+8.文档的查询
+	1.查询指定文档
+	2.查询指定属性
+		db.xiyouji.find({},{_id:0})
+	3.查询指定文档的指定属性
+	比较运算符
+		$gt 		大于
+		$gte	    大于等于
+		$lt         小于
+		$lte        小于等于
+		$ne         不等于
+		$in         在...里面，或者的关系
+		db.xiyouji.find({age:{$gte:80}})
+		db.xiyouji.find({age:{$ne:80}})
+		db.xiyouji.find({age:{$lt:20}},{_id:0})
+	关系运算符
+		$and   		同时满足多个条件
+		$or  		满足一个条件即可
+		$not        不满足条件
+		db.xiyouji.find({$and:[{age:{$gte:20}},{age:{$lte:100}}]})
+		db.xiyouji.find({$or:[{name:'tai2'},{name:'2dog'}]})
+	存在性
+		$exists     属性是否存在
+		db.xiyouji.find({age:{$exists:1}})
+	数据类型判断
+		$type       数据类型判断
+		1   数字
+		2   字符
+		3   对象
+		4   数组
+		5   二进制数据
+		7   object_id
+		8   布尔
+		9   日期
+		10  空
+		db.xiyouji.find({age:{$type:2}})
+
 
 
