@@ -99,8 +99,46 @@
 		select * from city limit 10;
 		需求:查询city表中11-15行数据
 		select * from city limit 10,5;
-
 安装python36注意:开始安装时候，选择Add python to Path
+4.语法总结：
+	select 列 from 表
+		where 条件
+			group by 分组条件
+				having 分组后过滤条件
+					order by 排序条件
+						limit 限制条件;
+5.python操作mysql数据库
+a.导入pymysql模块
+	1.pip自动安装方式
+		win+r--cmd--pip  install pymysql
+	2.官网通过源码包安装
+		下载地址：https://pypi.org/project/PyMySQL/
+		21.下载对应压缩包
+		22.解压到当前文件夹
+		23.进入到文件夹中命令提示符中执行python setup.py install
+	3.测试
+		win+r--cmd--python
+		import pymysql
+b.python操作mysql实例
+#coding=utf-8
+import pymysql   #导入pymysql模块
+conn=pymysql.connect(host='localhost',user='root',passwd='root',db='sakila',port=3306,charset='utf8')   #设置连接参数
+'''
+host:    连接的主机名或者IP
+user:    登陆mysql主机的用户
+passwd:  登陆mysql主机的密码
+db:      登陆mysql主机的数据库的名字
+port:    登陆mysql主机的数据库端口
+charset: 字符集
+'''
+cur=conn.cursor()                   #获取一个游标
+cur.execute('select * from city')   #所需要执行的语句
+data=cur.fetchall()		    #获取语句的执行结果
+for i in data:
+	print(i)
+cur.close()			    #关闭游标
+conn.close()   			    #关闭数据库连接，释放数据库资源
+
 
 
 
