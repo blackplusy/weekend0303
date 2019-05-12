@@ -1,0 +1,106 @@
+1.mysql基础
+	基础命令
+	表操作
+		create table 表 (
+			列 数据类型 约束，
+			列 数据类型 约束,
+			。。。
+		);
+		alter table 表 modify 列 数据类型 约束;
+		drop table 表;
+	数据的新增
+		向全表新增数据
+		insert into 表 values(值1,值2....);
+		向表中指定列新增数据
+		insert into 表(列1，列2) values(值1，值2);
+	数据的修改
+		update 表 set 列=值 where 条件;
+	数据的删除
+		delete   from  表 where 条件;
+		truncate table 表;
+	数据的查询
+		1.简单查询
+			select 列 from 表 where 条件;
+			where条件
+			a.比较运算符
+				>
+				<
+				=
+				>=
+				<=
+				!=
+				<>
+			b.关系运算符
+				and
+				or
+				not
+			c.区间
+				between...and...
+			d.空值查询
+				is null
+				is not null
+			e.模糊查询
+				like
+				%
+				_
+			f.在...里面
+				in
+		2.多表查询
+			内联查询
+			select 列 from 表1，表2 where 表1.列=表2.列;
+			select 列 from 表1 inner join 表2 on 表1.列=表2.列;
+			左联查询
+			select 列 from 左表 left join 右表 on 左表.列=右表.列;
+			右联查询
+			select 列 from 左表 right join 右表 on 左表.列=右表.列;
+		3.子查询
+		4.分组查询
+			select 列 from 表 
+				where 条件
+					group by 分组条件
+						having 分组后过滤条件;
+			having  分组后过滤
+			where   分组前过滤
+========================================================================================
+0.集成工具
+	web服务器
+		apache nginx tomcat iis
+	数据库服务器
+		mysql  sqlite access
+	1.xampp
+	2.wamp
+	3.phpstudy
+1.登陆
+	设置环境变量(让系统可以找到需要执行的命令)
+	计算机--属性--高级--环境变量--系统变量--Path中添加
+	;D:\phpStudy\MySQL\bin
+	确定--确定--确定
+	win+r--cmd--
+	mysql -u root -p
+2.导入sakila数据库
+3.mysql的排序和分页
+	a.排序
+		顺序：从小到大
+			order by 列;
+			order by 列 asc;
+		倒序(逆序)：从大到小
+			order by 列 desc;
+		需求:查询city表中所有数据，按照city_id倒序排列
+			select * from city order by city_id desc;
+		需求:查询city表中所有数据，按照country_id顺序排列
+			select * from city order by country_id ;
+		补充：双排序
+			order by 列1,列2;
+		需求:查询city表中所有数据，按照country_id顺序排列，city_id逆序排列
+	b.分页
+		limit 行数
+		limit 开始行数，取多少数据
+		需求:查询city表中前10行数据
+		select * from city limit 10;
+		需求:查询city表中11-15行数据
+		select * from city limit 10,5;
+
+
+
+
+
