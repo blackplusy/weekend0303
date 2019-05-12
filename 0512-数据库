@@ -100,7 +100,7 @@
 		需求:查询city表中11-15行数据
 		select * from city limit 10,5;
 
-
+安装python36注意:开始安装时候，选择Add python to Path
 
 
 
